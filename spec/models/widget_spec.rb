@@ -17,11 +17,6 @@ RSpec.describe Widget, type: :model do
   it "has 8 character length of password" do
   	expect(Widget.password.length).to eq 8
   end
-  it "should not be valid without a password" do
-  	widget = Widget.new password: nil
-    widget.should_not be_valid
-  end
-  
 
   it "is invalid without a fullname" do
     widget = Widget.new(fullname: nil)
@@ -29,6 +24,11 @@ RSpec.describe Widget, type: :model do
     expect(widget.errors[:fullname]).to include("can't be blank")
   end
 
+  it "should not be valid without a password" do
+  	widget = Widget.new password: nil
+    widget.should_not be_valid
+  end
+  
 
   it "should be not be valid with a short password" do
     widget= User.new password: 'short'
